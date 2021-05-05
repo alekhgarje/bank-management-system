@@ -1,0 +1,73 @@
+<body class="text-center">
+    <mat-toolbar>
+        <span>Bank Management System</span>
+        <input type="button" value="Logout" routerLink="/" style="position: absolute; right: 0; margin-right: 5mm;">
+    </mat-toolbar>
+    <br><br>
+    <form #applyLoanForm="ngForm" (ngSubmit)="onSubmit(applyLoanForm.value)">
+        <div class="container">
+            <div class="row">
+                <div class="form-group col">
+                    <div class="row">
+                        <!-- 1. Loan Type – Represents the Loan Type.can be Personal or Housing or Educational. -->
+                        <label class="col col-form-label" for="loanType">Loan Type</label>
+                        <select class="col form-control" [(ngModel)]="loanTypeSelected" required ngModel name="loanType"
+                            id="loanType">
+                            <option value="personal">Personal</option>
+                            <option value="educational">Educational</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- 2. Loan Amount – Represent the Loan Amount -->
+                        <label class="col col-form-label" for="loanAmount">Loan Amount</label>
+                        <input type="number" class="col form-control " required ngModel name="loanAmount"
+                            id="loanAmount">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- 3. Loan Apply Date – Represent the Loan Apply Date. should not be lesser than system date. -->
+                        <label class="col col-form-label " for="loanApplyDate">Loan Apply
+                            Date</label>
+                        <input type="date" class="col form-control " [(ngModel)]="loanApplyDateSelected"
+                            (ngModelChange)="checkDate()" required ngModel name="loanApplyDate" id="loanApplyDate">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- 4. Loan Issue Date – Represent the Loan Issue Date. -->
+                        <label class="col col-form-label " for="loanIssueDate">Loan Issue
+                            Date</label>
+                        <input type="date" class="col form-control" required ngModel name="loanIssueDate"
+                            id="loanIssueDate">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <!-- 5. Duration of the loan - Represents the tenure for which the loan is applied for. can be 5,10,15,20 years only. -->
+                        <label class="col col-form-label " for="durationOfLoan">Duration Of Loan
+                            (in
+                            years)</label>
+                        <select class="col form-control " required ngModel name="durationOfLoan" id="durationOfLoan">
+                            <option value=5>05</option>
+                            <option value=10>10</option>
+                            <option value=15>15</option>
+                            <option value=20>20</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div *ngIf="loanTypeSelected === 'educational'">
+                        <app-education-loan></app-education-loan>
+                    </div>
+                    <div *ngIf="loanTypeSelected === 'personal'">
+                        <app-personal-loan></app-personal-loan>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="text-center">
+            <button type="submit" [disabled]="applyLoanForm.invalid" class="w-50 btn btn-lg btn-dark"
+                routerLink="/navigate-in-login">Apply</button>
+        </div>
+    </form>
+</body>

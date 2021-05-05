@@ -1,0 +1,174 @@
+<body>
+    <mat-toolbar>
+        <span>Bank Management System</span>
+    </mat-toolbar>
+    <br><br>
+    <form #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm.value)">
+        <div class="container">
+
+            <div class="form-group row">
+                <!-- 1. Name – Name of the customer - alphabets and space only -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="name">Name</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel name="name" id="name"
+                    pattern="[a-zA-Z ]*" placeholder=" Alphabets and Space Only">
+                <!-- 2. Username – Customer login name -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="username">Username</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel name="username"
+                    id="username">
+                <!-- 3. Password – Password for login -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="password">Password</label>
+                <input type="password" class="col-sm-2 form-control form-control-sm" required ngModel name="password"
+                    id="password">
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 4. Guardian Type – Represents the Guardian Type -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="guardianType">Guardian Type</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="guardianType"
+                    id="guardianType">
+                    <option value="father">Father</option>
+                    <option value="husband">Husband</option>
+                </select>
+                <!-- 5. Guardian Name – Represents the husband/Husband name -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="guardianName">Guardian Name</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel name="guardianName"
+                    id="guardianName">
+
+                <!-- 6. Address – Represents the address of the person -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="address">Address</label>
+                <textarea rows="1" class="col-sm-2 form-control form-control-sm" required ngModel name="address"
+                    id="address"></textarea>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 7. Citizenship – Represent the customer citizenship -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="citizenship">Citizenship</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="citizenship"
+                    id="citizenship">
+                    <option value="indian">Indian</option>
+                    <option value="foreigner">Foreigner</option>
+                </select>
+
+                <!-- 8. Country – Represent the country -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="country">Country</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="country" id="country">
+                    <option value="india">India</option>
+                    <option value="foreign">Foreign</option>
+                </select>
+
+                <!-- 9. State – Represent the state based on the country.Based on the country, state has to be populated in the dropdown automatically -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="state">State</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel name="state"
+                    id="state">
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 10. Email Address – Represents the email address - should contain @ and . -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="email">Email Address</label>
+                <input type="email" class="col-sm-2 form-control form-control-sm" required ngModel name="email"
+                    id="email">
+
+                <!-- 11. Gender- Represents the Gender -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="gender">Gender</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <!-- 12. Marital Status – Represents the marital status -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="maritalStatus">Marital Status</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="maritalStatus"
+                    id="maritalStatus">
+                    <option value="married">Married</option>
+                    <option value="unmarried">Unmarried</option>
+                </select>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 13. Contact no – Represent the customer contact number - 10 digit -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="contactNumber">Contact Number</label>
+                <input type="tel" class="col-sm-2 form-control form-control-sm" required ngModel name="contactNumber"
+                    id="contactNumber">
+
+                <!-- 14. Date of Birth- Represents the customer DOB in DD/MM/YYYY format - should be 18 to 96 only.should not be less than system date. -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="dateOfBirth">Date Of Birth</label>
+                <input type="date" class="col-sm-2 form-control form-control-sm" required ngModel name="dateOfBirth"
+                    max="{{maxdate | date:'yyyy-MM-dd'}}" min="{{mindate | date:'yyyy-MM-dd'}}" id="dateOfBirth">
+
+                <!-- 15. Registration Date- Represents the customer registration Date which is automatically populated from the system current date. -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="registrationDate">Registration
+                    Date</label>
+                <input type="date" class="col-sm-2 form-control form-control-sm" required ngModel
+                    name="registrationDate" id="registrationDate">
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 16. Account type – Represents the type of account. Saving or Salary. -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="accountType">Account Type</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="accountType"
+                    id="accountType">
+                    <option value="saving">Saving</option>
+                    <option value="salary">Salary</option>
+                </select>
+
+                <!-- 17. Branch Name –Represents the branch name  -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="branchName">Branch Name</label>
+                <select class="col-sm-2 form-control form-control-sm" required ngModel name="branchName"
+                    id="branchName">
+                    <option value="sinhgadRoad">Sinhgad Road</option>
+                    <option value="tilakRoad">Tilak Road</option>
+                </select>
+
+                <!-- 18. Identification Document No. – Represents the identification document number - PAN alphanumeric only no space no special characters 12 characters -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="identificationDocumentNumber">PAN Card
+                    Number</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel
+                    name="identificationDocumentNumber" id="identificationDocumentNumber" minlength="12" maxlength="12"
+                    pattern="[a-zA-Z0-9]*" placeholder="12 Character Alphanumeric Only">
+            </div>
+
+
+            <div class="form-group row">
+                <!-- 19. Reference account holder name – Represents the nominee account holder name  -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="referenceAccountHolderName">Nominee
+                    Name</label>
+                <input type="text" class="col-sm-2 form-control form-control-sm" required ngModel
+                    name="referenceAccountHolderName" id="referenceAccountHolderName">
+
+                <!-- 20. Reference account holder acc. No. – Represents the nominee account holder account number  -->
+                <label class="col-sm-2 col-form-label col-form-label-sm"
+                    for="referenceAccountHolderAccountNumber">Nominee Contact Number</label>
+                <input type="number" minlength="16" maxlength="16" class="col-sm-2 form-control form-control-sm"
+                    required ngModel name="referenceAccountHolderAccountNumber"
+                    id="referenceAccountHolderAccountNumber">
+
+                <!-- 21. Reference account holder address- Represents the nominee account holder address -->
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="referenceAccountHolderAddress">Nominee
+                    Address</label>
+                <textarea rows="1" class="col-sm-2 form-control form-control-sm" required ngModel
+                    name="referenceAccountHolderAddress" id="referenceAccountHolderAddress"></textarea>
+            </div>
+        </div>
+        <br><br>
+        <div class="text-center">
+            <button type="submit" [disabled]="registrationForm.invalid" class="w-50 btn btn-lg btn-dark"
+                routerLink="/">Register</button>
+        </div>
+    </form>
+</body>
+
+<!-- 
+<br>*all fields mandatory 
+xx<br>*Customer id should be generated automatically during the time of registration 
+and should be shown in the success message, should be in the format of ‘R-XXX’. XXX should be random numeric of 3 digits
+shown in the success message.
+xx<br>*Account Number should be generated automatically and should be a numeric of 16 digits. Where to put it???
+<br>*Activation date - can be calculated based on the registration date. what to do with it???
+<br>*bank name in acc update ?? wth
+-->
