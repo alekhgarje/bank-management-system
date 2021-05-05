@@ -2,14 +2,12 @@
   <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
   <div class="form-floating">
-    <input type="text" class="form-control" id="email" [(ngModel)]="emailTyped" (ngModelChange)="checkCredentials()"
-      ngModel name="email" required placeholder="Username">
+    <input type="text" class="form-control" id="username" ngModel name="username" required placeholder="Username">
   </div>
   <div class="form-floating">
-    <input type="password" class="form-control" id="password" [(ngModel)]="passwordTyped"
-      (ngModelChange)="checkCredentials()" ngModel name="password" required placeholder="Password">
+    <input type="password" class="form-control" id="password" ngModel name="password" required placeholder="Password">
   </div>
-  <button class="w-100 btn btn-lg btn-dark" [disabled]="loginForm.invalid" [routerLink]="route" type="submit">Sign
+  <button class="w-100 btn btn-lg btn-dark" [disabled]="loginForm.invalid" type="submit">Sign
     in</button>
   <br>
   <div class="alert alert-danger" *ngIf="invalid">Invalid Credentials</div>

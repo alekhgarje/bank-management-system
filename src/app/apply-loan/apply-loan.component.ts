@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { educationLoan } from '../models/educationLoan.model';
 import { loan } from '../models/loan.model';
 import { personalLoan } from '../models/personalLoan.model';
@@ -36,6 +37,7 @@ export class ApplyLoanComponent implements OnInit {
     }
     //this.jsonStr=JSON.stringify(this.loan);
     //theLoanList.addLoan(this.loan);
+    this.router.navigateByUrl("/navigate-in-login");
   }
 
   //date = new Date;
@@ -54,7 +56,7 @@ export class ApplyLoanComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

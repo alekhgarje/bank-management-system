@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { account } from "../models/account.model";
 
 @Component({
@@ -8,30 +9,22 @@ import { account } from "../models/account.model";
 })
 export class CustomerLoginComponent implements OnInit {
 
-  route = "";
-  emailTyped = "";
-  passwordTyped = "";
   invalid = false;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
-  checkCredentials() {
-    console.warn(this.emailTyped);
-    console.warn(this.passwordTyped);
-    if (this.emailTyped == localStorage.getItem("username") && this.passwordTyped == localStorage.getItem("password")) {
-      this.route = "/navigate-in-login";
-    }
-    else this.route = "/";
-  }
-
   onSubmit(value) {
     console.warn(value);
-    if (value.email != localStorage.getItem("username") || value.password != localStorage.getItem("password")) {
+    if (value.password != localStorage.getItem(value.username)) {
+      this.router.navigateByUrl("/");
       this.invalid = true;
+    }
+    else {
+      this.router.navigateByUrl("/navigate-in-login");
     }
   }
 }

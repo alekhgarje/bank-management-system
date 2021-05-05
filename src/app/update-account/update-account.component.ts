@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { account } from '../models/account.model';
 
 @Component({
@@ -26,8 +27,9 @@ export class UpdateAccountComponent implements OnInit {
     if (value.dateOfBirth < this.senior) {
       this.citizenStatus = "senior";
     }
-    localStorage.setItem("username", value.username);
-    localStorage.setItem("password", value.password);
+
+    localStorage.setItem(value.username, value.password);
+
     this.acc = new account("R-001", "1111111111111111",
       value.name,
       value.username,
@@ -57,8 +59,10 @@ export class UpdateAccountComponent implements OnInit {
     console.warn(this.acc);
     //this.jsonStr=JSON.stringify(this.acc);
     //theAccountList.editAccount(this.acc);
+    this.router.navigateByUrl("/navigate-in-login");
+
   }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

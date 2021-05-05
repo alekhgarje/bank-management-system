@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { account } from '../models/account.model';
 
 @Component({
@@ -25,8 +26,9 @@ export class RegistrationPageComponent implements OnInit {
     if (value.dateOfBirth < this.senior) {
       this.citizenStatus = "senior";
     }
-    localStorage.setItem("username", value.username);
-    localStorage.setItem("password", value.password);
+
+    localStorage.setItem(value.username, value.password);
+
     this.acc = new account("R-001", "1111111111111111",
       value.name,
       value.username,
@@ -56,9 +58,11 @@ export class RegistrationPageComponent implements OnInit {
     console.warn(this.acc);
     //this.jsonStr=JSON.stringify(this.acc);
     //theAccountList.addAccount(this.acc);
+    this.router.navigateByUrl("/");
+
   }
   //constructor(private _snackBar: MatSnackBar) { }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
