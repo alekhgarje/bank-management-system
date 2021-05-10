@@ -11,13 +11,15 @@ import { personalLoan } from '../models/personalLoan.model';
 })
 export class ApplyLoanComponent implements OnInit {
 
+  today = new Date();
+
   loan: loan;
   educationalLoan: educationLoan;
   personalLoan: personalLoan;
 
   loanTypeSelected = "";
   loanApplyDateSelected: Date;
-  today: Date;
+  // today: Date;
   selected: Date;
   valid = true;
   //jsonStr;
@@ -42,18 +44,18 @@ export class ApplyLoanComponent implements OnInit {
 
   //date = new Date;
 
-  checkDate() {
-    this.valid = true;
-    this.today = new Date();
-    this.selected = new Date(this.loanApplyDateSelected);
-    //console.warn("selected date:" + this.selected);
-    //console.warn("today date:" + this.today);
-    if (this.today < this.selected) {
-      this.valid = false;
-      //console.warn(this.valid);
-      this.loanApplyDateSelected = null;
-    }
-  }
+  // checkDate() {
+  //   this.valid = true;
+  //   this.today = new Date();
+  //   this.selected = new Date(this.loanApplyDateSelected);
+  //   //console.warn("selected date:" + this.selected);
+  //   //console.warn("today date:" + this.today);
+  //   if (this.today < this.selected) {
+  //     this.valid = false;
+  //     //console.warn(this.valid);
+  //     this.loanApplyDateSelected = null;
+  //   }
+  // }
 
 
   constructor(private router: Router) { }

@@ -1,29 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { account } from '../models/account.model';
-
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.css']
 })
+
 export class RegistrationPageComponent implements OnInit {
   acc: account;
   //jsonStr;
 
-  today = new Date();
-  mindate = new Date(this.today.getFullYear() - 96, this.today.getMonth(), this.today.getDate());
-  maxdate = new Date(this.today.getFullYear() - 18, this.today.getMonth(), this.today.getDate());
-  senior = new Date(this.today.getFullYear() - 60, this.today.getMonth(), this.today.getDate());
+  today1 = new Date();
+  mindate = new Date(this.today1.getFullYear() - 96, this.today1.getMonth(), this.today1.getDate());
+  maxdate = new Date(this.today1.getFullYear() - 18, this.today1.getMonth(), this.today1.getDate());
+  senior1 = new Date(this.today1.getFullYear() - 60, this.today1.getMonth(), this.today1.getDate());
+
+  today = this.datepipe.transform(this.today1, 'yyyy-MM-dd');
+  senior = this.datepipe.transform(this.senior1, 'yyyy-MM-dd');
+
   initialDepositAmount = "0";
-  citizenStatus: string = "adult";
+  citizenStatus = "adult";
 
   onSubmit(value) {
+
     console.warn(value);
-    if (value.accountType = "saving") {
+    if (value.accountType == "saving") {
       this.initialDepositAmount = "5000";
     }
+    // console.warn("todays date: " + this.today);
+    // console.warn("date of birth: " + value.dateOfBirth);
+    // console.warn("seniority date: " + this.senior);
+    // console.warn("registration date: " + value.registrationDate);
     if (value.dateOfBirth < this.senior) {
+      // console.warn("date of birth is less than seniority date");
       this.citizenStatus = "senior";
     }
 
@@ -62,9 +73,10 @@ export class RegistrationPageComponent implements OnInit {
 
   }
   //constructor(private _snackBar: MatSnackBar) { }
-  constructor(private router: Router) { }
+  constructor(private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
+    // console.warn(this.senior1);
   }
 
 }

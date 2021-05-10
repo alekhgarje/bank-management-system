@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DatePipe } from '@angular/common';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -65,7 +66,9 @@ const routes: Routes = [
     MatSelectModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

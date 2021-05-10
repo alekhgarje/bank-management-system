@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { account } from '../models/account.model';
@@ -12,18 +13,23 @@ export class UpdateAccountComponent implements OnInit {
   acc: account;
   //jsonStr;
 
-  today = new Date();
-  mindate = new Date(this.today.getFullYear() - 96, this.today.getMonth(), this.today.getDate());
-  maxdate = new Date(this.today.getFullYear() - 18, this.today.getMonth(), this.today.getDate());
-  senior = new Date(this.today.getFullYear() - 60, this.today.getMonth(), this.today.getDate());
+  today1 = new Date();
+  mindate = new Date(this.today1.getFullYear() - 96, this.today1.getMonth(), this.today1.getDate());
+  maxdate = new Date(this.today1.getFullYear() - 18, this.today1.getMonth(), this.today1.getDate());
+  senior1 = new Date(this.today1.getFullYear() - 60, this.today1.getMonth(), this.today1.getDate());
+
+  today = this.datepipe.transform(this.today1, 'yyyy-MM-dd');
+  senior = this.datepipe.transform(this.senior1, 'yyyy-MM-dd');
+
   initialDepositAmount = "0";
-  citizenStatus: string = "adult";
+  citizenStatus = "adult";
 
   onSubmit(value) {
     console.warn(value);
-    if (value.accountType = "saving") {
+    if (value.accountType == "saving") {
       this.initialDepositAmount = "5000";
     }
+
     if (value.dateOfBirth < this.senior) {
       this.citizenStatus = "senior";
     }
@@ -62,7 +68,7 @@ export class UpdateAccountComponent implements OnInit {
     this.router.navigateByUrl("/navigate-in-login");
 
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
   }

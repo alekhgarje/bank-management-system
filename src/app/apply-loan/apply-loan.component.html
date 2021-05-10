@@ -29,8 +29,8 @@
                         <!-- 3. Loan Apply Date – Represent the Loan Apply Date. should not be lesser than system date. -->
                         <label class="col col-form-label " for="loanApplyDate">Loan Apply
                             Date</label>
-                        <input type="date" class="col form-control " [(ngModel)]="loanApplyDateSelected"
-                            (ngModelChange)="checkDate()" required ngModel name="loanApplyDate" id="loanApplyDate">
+                        <input type="date" class="col form-control " max="{{today | date:'yyyy-MM-dd'}}" required
+                            ngModel name="loanApplyDate" id="loanApplyDate">
                     </div>
                     <br>
                     <div class="row">
